@@ -1,18 +1,28 @@
-# Example from Lab
-
 from common import *
 
 us='''
-* Complex US: Cancel an order & issue a refund for customer
+* Complex Operational US: Cancel order
 
    As a:  Customer
  I want:  To cancel my order before a shopper begins shopping
-So That:  I can get a refund
+So That:  I can receive a full refund if my plans change
 '''
 
 print(us)
 
 def cancel_order(order_id):
+    # Step 0: Show orders before cancel
+    print("\nOrders BEFORE cancel")
+    before_cancel_sql = '''
+SELECT *
+  FROM Orders
+'''
+    cmd = cur.mogrify(before_cancel_sql)
+    print_cmd(cmd)
+    cur.execute(before_cancel_sql)
+    before_cancel_rows = cur.fetchall()
+    show_table(before_cancel_rows, 'order_id, order_date, status, total_cost, customer_id, cart_id')
+
     # Step 1: Cancel the order
     cancel_sql = '''
 UPDATE Orders
@@ -20,8 +30,8 @@ UPDATE Orders
  WHERE order_id = %s
  RETURNING order_id, cart_id, customer_id, order_date, status, total_cost;
 '''
-    cmd = cur.mogrify(cancel_sql, (order_id,))
-    print_cmd(cmd)
+    cmd1 = cur.mogrify(cancel_sql, (order_id,))
+    print_cmd(cmd1)
     cur.execute(cancel_sql, (order_id,))
     cancelled = cur.fetchall()
     
@@ -47,53 +57,16 @@ SELECT order_id, cart_id, customer_id, order_date, status, total_cost
     all_orders = cur.fetchall()
     show_table(all_orders, 'order_id cart_id customer_id order_date status total_cost')
 
+    # Step 3: Show orders after cancel
+    print("\nOrders AFTER cancel")
+    after_cancel_sql = '''
+SELECT *
+  FROM Orders
+'''
+    cmd3 = cur.mogrify(after_cancel_sql)
+    print_cmd(cmd3)
+    cur.execute(after_cancel_sql)
+    after_cancel_rows = cur.fetchall()
+    show_table(after_cancel_rows, 'order_id, order_date, status, total_cost, customer_id, cart_id')
 
-# Example usage
 cancel_order(5)
-
-
-# Original Version no trigger
-
-
-# print(us)
-
-# def show_cancel_order_feature( order_id):
-
-#     cols = 'order_id order_date status total_cost customer_id cart_id'
-
-#     tmpl =  f'''
-# UPDATE Orders
-#    SET status = 'cancelled'
-#  WHERE order_id = %s AND
-#        status = 'pending';
-
-#  SELECT order_id, order_date, status, total_cost, customer_id, cart_id
-#    FROM Orders
-#   WHERE order_id = %s
-# '''
-#     cmd = cur.mogrify(tmpl, (order_id,order_id,))
-#     print_cmd(cmd)
-#     cur.execute(cmd)
-#     rows = cur.fetchall()
-#     pp(rows)
-#     show_table( rows, cols) 
-
-# show_cancel_order_feature( 5 )
-
-
-
-
-
-# use trigger to cancel order:
-
-# trigger on: update to order status
-# --> if cancelled
-#     adds to customer_orders the refund -total cost of prev one
-#     adds to transaction/payments table w/ refund info 
-# --> else nothing
-
-# function cancel_order
-#     updates order status to cancelled
-#     for specified order_id
-
-#
