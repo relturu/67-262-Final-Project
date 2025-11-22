@@ -1,0 +1,6 @@
+order_id,order_date,status,total_cost,customer_id,cart_id
+1,2025-11-01,completed,25.00,1,1
+2,2025-11-02,completed,50.00,2,2
+3,2025-11-03,completed,75.00,3,3
+4,2025-11-04,completed,100.00,4,4
+5,2025-11-05,completed,125.00,5,5
