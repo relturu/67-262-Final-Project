@@ -1,0 +1,6 @@
+customer_id,customer_address,preferences,membership
+1,123 Main St,none,none
+2,456 Oak Ave,none,none
+3,789 Pine Rd,none,Instacart+
+4,321 Maple St,vegan,Instacart+
+5,654 Cedar Ave,vegetarian,none

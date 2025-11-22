@@ -1,0 +1,6 @@
+user_id,f_name,l_name,email,phone_number,registration_date
+1,John,Doe,john.doe@email.com,4121234567,2025-10-21
+2,Jane,Doe,jane.doe@email.com,4122345678,2025-09-21
+3,James,Smith,james.smith@email.com,4123456789,2025-08-21
+4,Robert,Williams,robert.williams@email.com,4124567890,2025-07-21
+5,Johnathan,Johnson,johnathan.johnson@email.com,4125678910,2025-06-21
