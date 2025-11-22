@@ -1,0 +1,16 @@
+-- drop the project database if it exists
+DROP database if EXISTS project;
+
+-- create it afresh
+CREATE database project;
+\c project
+\i create.SQL
+
+-- load the data
+\copy Cart(cart_id, store_id, customer_id) FROM data/Cart.csv csv header;
+\copy Customer(customer_id, customer_address, preferences, membership) FROM data/Customer.csv csv header;
+\copy Orders(order_id, order_date, status, total_cost, customer_id, cart_id) FROM data/Orders.csv csv header;
+\copy Payment(payment_id, payment_amount, payment_method, order_id) FROM data/Payment.csv csv header;
+\copy Store(store_id, store_name, store_address, zone_id) FROM data/Store.csv csv header;
+\copy Users(user_id, f_name, l_name, email, phone_number, registration_date) FROM data/Users.csv csv header;
+\copy ZipCodeZones(zone_id, zip_code) FROM data/ZipCodeZones.csv csv header;
