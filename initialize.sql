@@ -7,13 +7,22 @@ CREATE database project;
 \i create.SQL
 
 -- load the data
-\copy ZipCodeZones(zone_id, zip_code) FROM data/ZipCodeZones.csv csv header;
-\copy Users(user_id, f_name, l_name, email, phone_number, registration_date) FROM data/Users.csv csv header;
-\copy Customer(customer_id, customer_address, preferences, membership) FROM data/Customer.csv csv header;
-\copy Store(store_id, store_name, store_address, zone_id) FROM data/Store.csv csv header;
-\copy Cart(cart_id, store_id, customer_id) FROM data/Cart.csv csv header;
-\copy Orders(order_id, order_date, status, total_cost, customer_id, cart_id) FROM data/Orders.csv csv header;
-\copy Payment(payment_id, payment_amount, payment_method, order_id) FROM data/Payment.csv csv header;
+\copy Addresses(address_id, street_address, city, state, zip_code, zone) FROM data/Addresses.csv csv header;
+\copy Users(user_id, first_name, last_name, email, phone_number, registration_date) FROM data/Users.csv csv header;
+\copy Customers(customer_id, customer_address_id, preferences, membership) FROM data/Customers.csv csv header;
+\copy Shoppers(shopper_id, drivers_license, vehicle, shopper_rating, start_date) FROM data/Shoppers.csv csv header;
+\copy Batches(batch_id, shopper_id, start_time, end_time, date, shopper_earnings, delivery_distance) FROM data/Batches.csv csv header;
+\copy Stores(store_id, name, store_address_id) FROM data/Stores.csv csv header;
+\copy Lists(list_id, store_id, customer_id) FROM data/Lists.csv csv header;
+\copy Carts(cart_id, store_id, customer_id) FROM data/Carts.csv csv header;
+\copy Categories(category_id, store_id, category_name) FROM data/Categories.csv csv header;
+\copy Items(item_id, preference, name, description) FROM data/Items.csv csv header;
+\copy Orders(order_id, cart_id, batch_id, order_date, status, total_cost, payment_method) FROM data/Orders.csv csv header;
+\copy Cart_Items(cart_id, item_id) FROM data/Cart_Items.csv csv header;
+\copy List_Items(list_id, item_id) FROM data/List_Items.csv csv header;
+\copy Store_Items(store_id, item_id, price, item_rating, count) FROM data/Store_Items.csv csv header;
+\copy Store_Categories(store_id, category_id) FROM data/Store_Categories.csv csv header;
+\copy Item_Categories(item_id, category_id) FROM data/Item_Categories.csv csv header;
 
 
 ALTER TABLE orders
