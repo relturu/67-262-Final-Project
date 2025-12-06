@@ -1,6 +1,6 @@
 customer_id,customer_address_id,preferences,membership
-1,1,none,none
+1,1,None,None
 2,2,Vegan,Instacart+
-3,3,Vegetarian,none
-4,4,Gluten-Free,Instacart+
-5,5,none,Instacart+
+3,3,Vegan,None
+4,4,Vegetarian,Instacart+
+5,5,Vegetarian,None

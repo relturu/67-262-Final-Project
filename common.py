@@ -24,10 +24,9 @@ def print_cmd(cmd):
         print(cmd.decode('utf-8'))
 
 conn = psycopg2.connect(
-    host='localhost',
-    database='project', 
-    user='arielleschoolaccount'
-    ) # check on trax and isdb ...
+    database='project',
+    user='isdb'
+    )
 conn.autocommit = True
 cur = conn.cursor()
 

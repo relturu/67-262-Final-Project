@@ -4,7 +4,7 @@
 SELECT * FROM Addresses;
 
 \echo 'Users Table'
-SELECT * FROM Users';
+SELECT * FROM Users;
 
 \echo 'Customers Table'
 SELECT * FROM Customers;
@@ -33,7 +33,7 @@ SELECT * FROM Items;
 \echo 'Orders Table'
 SELECT * FROM Orders;
 
-\echo Cart_Items Table'
+\echo 'Cart_Items Table'
 SELECT * FROM Cart_Items;
 
 \echo 'List_Items Table'
