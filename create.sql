@@ -1,5 +1,5 @@
 -- Created by Redgate Data Modeler (https://datamodeler.redgate-platform.com)
--- Last modification date: 2025-12-05 02:27:40.413
+-- Last modification date: 2025-12-06 22:43:49.967
 
 -- tables
 -- Table: Addresses
@@ -94,7 +94,7 @@ CREATE TABLE Orders (
     cart_id int  NOT NULL,
     batch_id int  NOT NULL,
     order_date date  NOT NULL,
-    status text  NOT NULL,
+    status Status_Type  NOT NULL,
     total_cost decimal(10,2)  NOT NULL,
     payment_method text  NOT NULL,
     CONSTRAINT Orders_pk PRIMARY KEY (order_id)

@@ -1,26 +1,34 @@
 -- Trigger function for cancelling an order
-CREATE OR REPLACE FUNCTION cancel_order_refund()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION fn_cancel_order()
+RETURNS TRIGGER 
+LANGUAGE plpgsql AS 
+$$
+DECLARE
+    refund_amount DECIMAL(10,2);
 BEGIN
-    -- Only do something if the status is updated to 'cancelled'
-    IF NEW.status = 'cancelled' AND OLD.status <> 'cancelled' THEN
-        -- Insert a "refund" order as a negative total_cost
-        INSERT INTO Orders(order_date, status, total_cost, customer_id, cart_id)
+    -- Only do something if the new status is 'Cancelled' 
+    -- and old status is Pending (no shopper has accepted order yet)
+    IF NEW.status = 'Cancelled' AND OLD.status = 'Pending' THEN
+        -- Calculate refund amount (negative of original total cost)
+        refund_amount = -OLD.total_cost;
+        -- Insert the refund record into Orders table
+        INSERT INTO Orders (cart_id, batch_id, order_date, status, total_cost, payment_method)
         VALUES (
-            now(),                    -- current timestamp
-            'refund',                 -- mark as refund
-            -OLD.total_cost,          -- negative of original
-            OLD.customer_id, 
-            OLD.cart_id
+            OLD.cart_id,
+            OLD.batch_id,
+            now(),
+            'Refunded',
+            refund_amount,
+            'Refund'
         );
     END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
+    RETURN NULL;
+END
+$$;
 
 -- Attach trigger to Orders table on UPDATE
-DROP TRIGGER IF EXISTS trigger_cancel_order ON Orders;
-CREATE TRIGGER trigger_cancel_order
+DROP TRIGGER IF EXISTS tr_cancel_order ON Orders;
+CREATE TRIGGER tr_cancel_order
 AFTER UPDATE OF status ON Orders
 FOR EACH ROW
-EXECUTE FUNCTION cancel_order_refund();
+EXECUTE FUNCTION fn_cancel_order();

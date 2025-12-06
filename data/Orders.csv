@@ -3,4 +3,4 @@ order_id,cart_id,batch_id,order_date,status,total_cost,payment_method
 2,2,2,2025-12-02,Delivered,32.45,Debit Card
 3,3,3,2025-12-03,Delivered,76.30,Apple Pay
 4,4,4,2025-12-04,Delivered,41.88,PayPal
-5,5,5,2025-12-05,Delivered,65.50,Credit Card
+5,5,5,2025-12-05,Pending,65.50,Credit Card
