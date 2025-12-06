@@ -1,6 +1,0 @@
-payment_id,payment_amount,payment_method,order_id
-1,25.00,Credit Card,1
-2,50.00,Debit Card,2
-3,75.00,PayPay,3
-4,100.00,Venmo,4
-5,125.00,Apple Pay,5
