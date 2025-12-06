@@ -1,10 +1,10 @@
 address_id,street_address,city,state,zip_code,zone
-1,123 Main St,Pittsburgh,PA,15213,1
+1,123 Main St,Pittsburgh,PA,15120,1
 2,456 Oak Ave,Philadelphia,PA,19102,2
 3,789 Pine Rd,Los Angeles,CA,90001,3
 4,321 Maple St,Boston,MA,02108,4
 5,654 Cedar Ave,Chicago,IL,60007,5
-6,100 Main St,Pittsburgh,PA,15213,1
+6,100 Main St,Pittsburgh,PA,15120,1
 7,200 Oak Ave,Philadelphia,PA,19102,2
 8,300 Pine Rd,Los Angeles,CA,90001,3
 9,400 Maple St,Boston,MA,02108,4
