@@ -11,7 +11,7 @@ So That:  I can know which categories to focus on for promotions.
 print(us)
 
 def view_popular_categories(store_id):
-    print("")
+    print("Categories Table BEFORE viewing popular categories")
     before_sql1 = '''
 SELECT *
   FROM Categories
@@ -22,6 +22,7 @@ SELECT *
     before_rows1 = cur.fetchall()
     show_table(before_rows1, 'category_id category_name')
 
+    print("Store_Categories Table BEFORE viewing popular categories")
     before_sql2 = '''
 SELECT *
   FROM Store_Categories
@@ -32,7 +33,6 @@ SELECT *
     before_rows2 = cur.fetchall()
     show_table(before_rows2, 'store_id category_id')
 
-    print("")
     view_popular_categories_sql = '''
 SELECT c.category_id,
        c.category_name,
@@ -55,7 +55,7 @@ WINDOW w AS (ORDER BY COUNT(ci.item_id) DESC)
     print_cmd(view_popular_categories_cmd)
     cur.execute(view_popular_categories_cmd)
     view_popular_categories_rows = cur.fetchall()
-    print("")
+    print("Popular categories for store by number of items sold")
     show_table(view_popular_categories_rows, 'category_id category_name items_sold popularity_rank')
 
 view_popular_categories(1);
