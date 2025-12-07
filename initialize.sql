@@ -6,6 +6,7 @@ CREATE database project;
 \c project
 
 CREATE TYPE Status_Type AS ENUM('Pending', 'Accepted', 'Delivered', 'Cancelled', 'Refunded');
+CREATE TYPE Payment_Method_Type AS ENUM ('Credit Card', 'Debit Card', 'Apple Pay', 'PayPal', 'Refund');
 
 \i create.SQL
 
@@ -18,7 +19,7 @@ CREATE TYPE Status_Type AS ENUM('Pending', 'Accepted', 'Delivered', 'Cancelled',
 \copy Stores(store_id, store_name, store_address_id) FROM data/Stores.csv csv header;
 \copy Lists(list_id, store_id, customer_id) FROM data/Lists.csv csv header;
 \copy Carts(cart_id, store_id, customer_id) FROM data/Carts.csv csv header;
-\copy Categories(category_id, store_id, category_name) FROM data/Categories.csv csv header;
+\copy Categories(category_id, category_name) FROM data/Categories.csv csv header;
 \copy Items(item_id, preferences, item_name, item_description) FROM data/Items.csv csv header;
 \copy Orders(order_id, cart_id, batch_id, order_date, status, total_cost, payment_method) FROM data/Orders.csv csv header;
 \copy Cart_Items(cart_id, item_id) FROM data/Cart_Items.csv csv header;
