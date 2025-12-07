@@ -1,5 +1,5 @@
 -- Created by Redgate Data Modeler (https://datamodeler.redgate-platform.com)
--- Last modification date: 2025-12-06 22:43:49.967
+-- Last modification date: 2025-12-07 21:29:47.076
 
 -- tables
 -- Table: Addresses
@@ -43,7 +43,6 @@ CREATE TABLE Carts (
 -- Table: Categories
 CREATE TABLE Categories (
     category_id int  NOT NULL,
-    store_id int  NOT NULL,
     category_name text  NOT NULL,
     CONSTRAINT Categories_pk PRIMARY KEY (category_id)
 );
@@ -96,7 +95,7 @@ CREATE TABLE Orders (
     order_date date  NOT NULL,
     status Status_Type  NOT NULL,
     total_cost decimal(10,2)  NOT NULL,
-    payment_method text  NOT NULL,
+    payment_method Payment_Method_Type  NOT NULL,
     CONSTRAINT Orders_pk PRIMARY KEY (order_id)
 );
 
@@ -181,14 +180,6 @@ ALTER TABLE Carts ADD CONSTRAINT Carts_Customers
 
 -- Reference: Carts_Stores (table: Carts)
 ALTER TABLE Carts ADD CONSTRAINT Carts_Stores
-    FOREIGN KEY (store_id)
-    REFERENCES Stores (store_id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: Categories_Stores (table: Categories)
-ALTER TABLE Categories ADD CONSTRAINT Categories_Stores
     FOREIGN KEY (store_id)
     REFERENCES Stores (store_id)  
     NOT DEFERRABLE 

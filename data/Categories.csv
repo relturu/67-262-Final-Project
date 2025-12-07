@@ -1,6 +1,6 @@
-category_id,store_id,category_name
-1,1,Produce
-2,2,Dairy
-3,3,Bakery
-4,4,Pantry
-5,5,Pharmacy
+category_id,category_name
+1,Produce
+2,Dairy
+3,Bakery
+4,Pantry
+5,Pharmacy
