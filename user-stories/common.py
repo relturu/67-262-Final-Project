@@ -25,7 +25,7 @@ def print_cmd(cmd):
 
 conn = psycopg2.connect(
     database='project',
-    user='isdb'
+    user='arielleschoolaccount'
     )
 conn.autocommit = True
 cur = conn.cursor()
