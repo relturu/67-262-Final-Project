@@ -7,7 +7,7 @@ Complex Operational US: Make Multi-Store Grocery List
  I want:  Make a list with items from multiple stores
 So That:  I can make a more holistic shopping list.
 
-(This is a NEW user story)
+(This is another NEW user story)
 '''
 
 print(us)
