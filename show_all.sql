@@ -21,6 +21,9 @@ SELECT * FROM Stores;
 \echo 'Lists Table'
 SELECT * FROM Lists;
 
+\echo 'MultiStoreLists Table'
+SELECT * FROM Lists;
+
 \echo 'Carts Table'
 SELECT * FROM Carts;
 
@@ -38,6 +41,9 @@ SELECT * FROM Cart_Items;
 
 \echo 'List_Items Table'
 SELECT * FROM List_Items;
+
+\echo 'Multi_List_Items Table'
+SELECT * FROM Multi_List_Items;
 
 \echo 'Store_Items Table'
 SELECT * FROM Store_Items;

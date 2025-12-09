@@ -79,12 +79,26 @@ CREATE TABLE List_Items (
     CONSTRAINT List_Items_pk PRIMARY KEY (list_id,item_id)
 );
 
+-- Table: List_Items
+CREATE TABLE Multi_List_Items (
+    multilist_id int  NOT NULL,
+    item_id int  NOT NULL,
+    CONSTRAINT Multi_List_Items_pk PRIMARY KEY (multilist_id,item_id)
+);
+
 -- Table: Lists
 CREATE TABLE Lists (
-    list_id int  NOT NULL,
+    list_id int NOT NULL,
     store_id int  NOT NULL,
     customer_id int  NOT NULL,
     CONSTRAINT Lists_pk PRIMARY KEY (list_id)
+);
+
+-- Table: Lists that allow items from multiple stores
+CREATE TABLE MultiStoreLists (
+    multilist_id int NOT NULL,
+    customer_id int  NOT NULL,
+    CONSTRAINT MultiStoreLists_pk PRIMARY KEY (multilist_id)
 );
 
 -- Table: Orders

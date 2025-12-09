@@ -18,12 +18,14 @@ CREATE TYPE Payment_Method_Type AS ENUM ('Credit Card', 'Debit Card', 'Apple Pay
 \copy Batches(batch_id, shopper_id, start_time, end_time, delivery_date, shopper_earnings, delivery_distance) FROM data/Batches.csv csv header;
 \copy Stores(store_id, store_name, store_address_id) FROM data/Stores.csv csv header;
 \copy Lists(list_id, store_id, customer_id) FROM data/Lists.csv csv header;
+\copy MultiStoreLists(multilist_id, customer_id) FROM data/MultiStoreLists.csv csv header;
 \copy Carts(cart_id, store_id, customer_id) FROM data/Carts.csv csv header;
 \copy Categories(category_id, category_name) FROM data/Categories.csv csv header;
 \copy Items(item_id, preferences, item_name, item_description) FROM data/Items.csv csv header;
 \copy Orders(order_id, cart_id, batch_id, order_date, status, total_cost, payment_method) FROM data/Orders.csv csv header;
 \copy Cart_Items(cart_id, item_id) FROM data/Cart_Items.csv csv header;
 \copy List_Items(list_id, item_id) FROM data/List_Items.csv csv header;
+\copy Multi_List_Items(multilist_id, item_id) FROM data/Multi_List_Items.csv csv header;
 \copy Store_Items(store_id, item_id, price, item_rating, count) FROM data/Store_Items.csv csv header;
 \copy Store_Categories(store_id, category_id) FROM data/Store_Categories.csv csv header;
 \copy Item_Categories(item_id, category_id) FROM data/Item_Categories.csv csv header;
