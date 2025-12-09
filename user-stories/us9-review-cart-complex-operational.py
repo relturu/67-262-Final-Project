@@ -5,7 +5,7 @@ Complex Operational US: Review Cart Before Purchase
 
    As a:  Customer
  I want:  Preview/review items in cart on purchase page
-So That:  Make a list with items from multiple stores
+So That:  I can ensure there are no mistakes in my cart before I complete my purchase.
 
 (This is a NEW user story)
 '''
