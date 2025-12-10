@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-Complex Operational US: Make Store Specific Lists
+Complex Operational US7: Make Store Specific Lists
 
    As a:  Customer
  I want:  Make a list for a specific store

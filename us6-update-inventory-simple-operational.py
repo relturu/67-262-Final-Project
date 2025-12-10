@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-Simple Analytical US: Update Inventory
+Simple Operational US6: Update Inventory
 
    As a:  Store
  I want:  To update the price and inventory count for a specific item
@@ -11,7 +11,10 @@ So That:  I can ensure both customers and shoppers see accurate information for 
 print(us)
 
 def update_inventory(store_id, item_id, new_price, new_count):
-    print("\nItem in Store_Items table BEFORE update inventory")
+    # Step 1: Show contents of relevant tables BEFORE execution
+
+    # Show the specific item to be updated
+    print(f"\nItem in Store_Items table (store_id = {store_id}, item_id = {item_id}):")
     before_sql1 = '''
 SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
   FROM Store_Items AS si
@@ -29,11 +32,16 @@ SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
 
     show_table(before_rows1, 'store_id item_id item_name price count')
 
-    print("\nStore_Items table BEFORE update inventory")
+    old_price = before_rows1[0][3]
+    old_count = before_rows1[0][4]
+
+    # Show all items in Store_Items table BEFORE update
+    print("\nStore_Items table BEFORE updating inventory")
     before_sql2 = '''
 SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
   FROM Store_Items AS si
        JOIN Items AS i ON si.item_id = i.item_id
+ ORDER BY si.store_id, si.item_id
 '''
     before_cmd2 = cur.mogrify(before_sql2, ())
     print_cmd(before_cmd2)
@@ -41,6 +49,10 @@ SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
     before_rows2 = cur.fetchall()
     show_table(before_rows2, 'store_id item_id item_name price count')
 
+    # Step 2: Execute SQL query that implement the user story
+    print(f"\nSQL Query: Update inventory for store_id = {store_id} and item_id = {item_id}")
+    print(f"New price: ${new_price} (old: ${old_price})")
+    print(f"New price: {new_count} items (old: {old_count} items)")
     update_inventory_sql = '''
 UPDATE Store_Items
    SET price = %s, count = %s
@@ -51,10 +63,15 @@ RETURNING store_id, item_id, price, count
     print_cmd(update_inventory_cmd)
     cur.execute(update_inventory_cmd)
     update_inventory_rows = cur.fetchall()
-    print("\nUpdated item")
+
+    # Show updated item
+    print("\nUpdated item:")
     show_table(update_inventory_rows, 'store_id item_id price count')
 
-    print("\nItem in Store_Items table AFTER update inventory")
+    # Step 3: Show contents of relevant tables AFTER execution
+
+    # Show updated item in Store_Items table
+    print("\nItem in Store_Items table AFTER updating inventory")
     after_sql1 = '''
 SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
   FROM Store_Items AS si
@@ -67,11 +84,13 @@ SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
     after_rows1 = cur.fetchall()
     show_table(after_rows1, 'store_id item_id item_name price count')
 
+    # Show all items in Store_Items table AFTER update
     print("\nStore_Items table AFTER update inventory")
     after_sql2 = '''
 SELECT si.store_id, si.item_id, i.item_name, si.price, si.count
   FROM Store_Items AS si
        JOIN Items AS i ON si.item_id = i.item_id
+ ORDER BY si.store_id, si.item_id
 '''
     after_cmd2 = cur.mogrify(after_sql2, ())
     print_cmd(after_cmd2)

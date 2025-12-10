@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-Complex Operational US: Cancel order
+Complex Operational US1: Cancel order
 
    As a:  Customer
  I want:  To cancel my order before a shopper begins shopping
@@ -12,7 +12,7 @@ print(us)
 
 def cancel_order(order_id):
     # Step 1: Show orders before cancel
-    print("\nOrders BEFORE cancel")
+    print("\nOrders table BEFORE cancel")
     before_cancel_sql = '''
 SELECT *
   FROM Orders
@@ -63,8 +63,8 @@ SELECT customer_id
     # Step 4: Show all orders for this customer (including the new refund order created by trigger)
     show_orders_sql = '''
 SELECT o.order_id, o.cart_id, o.batch_id, o.order_date, o.status, o.total_cost, o.payment_method
-  FROM Orders o
-  JOIN Carts c ON o.cart_id = c.cart_id
+  FROM Orders AS o
+       JOIN Carts AS c ON o.cart_id = c.cart_id
  WHERE c.customer_id = %s
  ORDER BY o.order_date;
 '''
@@ -76,7 +76,7 @@ SELECT o.order_id, o.cart_id, o.batch_id, o.order_date, o.status, o.total_cost, 
     show_table(all_orders, 'order_id cart_id batch_id order_date status total_cost payment_method')
 
     # Step 5: Show orders after cancel (shows the new refund record)
-    print("\nOrders AFTER cancel")
+    print("\nOrders table AFTER cancel")
     after_cancel_sql = '''
 SELECT *
   FROM Orders

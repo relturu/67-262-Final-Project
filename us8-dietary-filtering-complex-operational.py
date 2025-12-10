@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-Complex Operational US: Filter by Dietary Preferences
+Complex Operational US8: Filter by Dietary Preferences
 
    As a:  Customer
  I want:  Filter my recommended items by preferences

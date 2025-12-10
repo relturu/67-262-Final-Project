@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-Complex Operational US: Make Multi-Store Grocery List
+Complex Operational US10: Make Multi-Store Grocery List
 
    As a:  Customer
  I want:  Make a list with items from multiple stores

@@ -22,7 +22,7 @@ SELECT * FROM Stores;
 SELECT * FROM Lists;
 
 \echo 'MultiStoreLists Table'
-SELECT * FROM Lists;
+SELECT * FROM MultiStoreLists;
 
 \echo 'Carts Table'
 SELECT * FROM Carts;

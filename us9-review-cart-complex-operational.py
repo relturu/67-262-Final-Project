@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-Complex Operational US: Review Cart Before Purchase
+Complex Operational US9: Review Cart Before Purchase
 
    As a:  Customer
  I want:  Preview/review items in cart on purchase page
